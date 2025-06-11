@@ -1,26 +1,35 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Calendar, Clock, Users, CheckCircle, AlertCircle } from "lucide-react"
-import { employeeAssignments, feedbackData } from "@/data/mock-data"
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Calendar, Clock, Users, CheckCircle, AlertCircle } from "lucide-react";
+import { employeeAssignments, feedbackData } from "@/data/mock-data";
 
 export default function EmployeeView() {
-  const [activeTab, setActiveTab] = useState("upcoming")
+  const [activeTab, setActiveTab] = useState("upcoming");
 
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold">Welcome, Priya Sharma</h2>
-        <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+        <h2 className="text-xl font-semibold text-foreground">
+          Welcome, Priya Sharma
+        </h2>
+        <Badge
+          variant="outline"
+          className="bg-green-50 text-green-700 border-green-200"
+        >
           Certified Interviewer
         </Badge>
       </div>
 
-      <Tabs defaultValue="upcoming" className="w-full" onValueChange={setActiveTab}>
+      <Tabs
+        defaultValue="upcoming"
+        className="w-full"
+        onValueChange={setActiveTab}
+      >
         <TabsList className="grid w-full grid-cols-3 mb-6">
           <TabsTrigger value="upcoming">Upcoming Interviews</TabsTrigger>
           <TabsTrigger value="feedback">Pending Feedback</TabsTrigger>
@@ -30,19 +39,24 @@ export default function EmployeeView() {
         <TabsContent value="upcoming" className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {employeeAssignments.map((assignment) => (
-              <Card key={assignment.id} className="border-l-4 border-l-indigo-500">
+              <Card
+                key={assignment.id}
+                className="border-l-4 border-l-indigo-500"
+              >
                 <CardContent className="p-4">
-                  <h3 className="font-semibold text-gray-900 mb-3">{assignment.eventTitle}</h3>
+                  <h3 className="font-semibold text-foreground mb-3">
+                    {assignment.eventTitle}
+                  </h3>
                   <div className="space-y-2 mb-3">
-                    <div className="flex items-center text-sm text-gray-600">
+                    <div className="flex items-center text-sm text-muted-foreground">
                       <Clock className="h-4 w-4 mr-2" />
                       {assignment.time}
                     </div>
-                    <div className="flex items-center text-sm text-gray-600">
+                    <div className="flex items-center text-sm text-muted-foreground">
                       <Users className="h-4 w-4 mr-2" />
                       {assignment.candidates} Candidates
                     </div>
-                    <div className="flex items-center text-sm text-gray-600">
+                    <div className="flex items-center text-sm text-muted-foreground">
                       <Badge
                         variant="outline"
                         className={
@@ -60,7 +74,10 @@ export default function EmployeeView() {
                       View Details
                     </Button>
                     {assignment.status === "Pending" && (
-                      <Button size="sm" className="bg-indigo-600 hover:bg-indigo-700">
+                      <Button
+                        size="sm"
+                        className="bg-indigo-600 hover:bg-indigo-700"
+                      >
                         Confirm
                       </Button>
                     )}
@@ -74,26 +91,39 @@ export default function EmployeeView() {
         <TabsContent value="feedback" className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {feedbackData.map((feedback) => (
-              <Card key={feedback.id} className="border-l-4 border-l-orange-500">
+              <Card
+                key={feedback.id}
+                className="border-l-4 border-l-orange-500"
+              >
                 <CardContent className="p-4">
-                  <h3 className="font-semibold text-gray-900 mb-1">{feedback.candidateName}</h3>
-                  <p className="text-sm text-gray-500 mb-3">ID: {feedback.candidateId}</p>
+                  <h3 className="font-semibold text-foreground mb-1">
+                    {feedback.candidateName}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    ID: {feedback.candidateId}
+                  </p>
                   <div className="space-y-2 mb-3">
-                    <div className="flex items-center text-sm text-gray-600">
+                    <div className="flex items-center text-sm text-muted-foreground">
                       <Calendar className="h-4 w-4 mr-2" />
                       {feedback.event}
                     </div>
-                    <div className="flex items-center text-sm text-gray-600">
+                    <div className="flex items-center text-sm text-muted-foreground">
                       <Clock className="h-4 w-4 mr-2" />
                       Deadline: {feedback.deadline}
                     </div>
                     <div className="flex items-center text-sm">
                       {feedback.status === "Pending" ? (
-                        <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">
+                        <Badge
+                          variant="outline"
+                          className="bg-yellow-50 text-yellow-700 border-yellow-200"
+                        >
                           Pending
                         </Badge>
                       ) : (
-                        <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                        <Badge
+                          variant="outline"
+                          className="bg-green-50 text-green-700 border-green-200"
+                        >
                           Completed
                         </Badge>
                       )}
@@ -101,7 +131,9 @@ export default function EmployeeView() {
                   </div>
                   <div className="flex justify-between">
                     {feedback.status === "Pending" ? (
-                      <Button className="w-full bg-orange-500 hover:bg-orange-600">Submit Feedback</Button>
+                      <Button className="w-full bg-orange-500 hover:bg-orange-600">
+                        Submit Feedback
+                      </Button>
                     ) : (
                       <Button variant="outline" className="w-full">
                         View Feedback
@@ -128,10 +160,14 @@ export default function EmployeeView() {
                     </div>
                     <div>
                       <h3 className="font-medium">Behavioral Interview</h3>
-                      <p className="text-sm text-gray-500">Certified on May 15, 2025</p>
+                      <p className="text-sm text-gray-500">
+                        Certified on May 15, 2025
+                      </p>
                     </div>
                   </div>
-                  <Badge className="bg-green-100 text-green-700 border-green-200">Active</Badge>
+                  <Badge className="bg-green-100 text-green-700 border-green-200">
+                    Active
+                  </Badge>
                 </div>
 
                 <div className="flex items-center justify-between p-4 border rounded-lg">
@@ -141,10 +177,14 @@ export default function EmployeeView() {
                     </div>
                     <div>
                       <h3 className="font-medium">Design Interview</h3>
-                      <p className="text-sm text-gray-500">Certified on June 2, 2025</p>
+                      <p className="text-sm text-gray-500">
+                        Certified on June 2, 2025
+                      </p>
                     </div>
                   </div>
-                  <Badge className="bg-green-100 text-green-700 border-green-200">Active</Badge>
+                  <Badge className="bg-green-100 text-green-700 border-green-200">
+                    Active
+                  </Badge>
                 </div>
 
                 <div className="flex items-center justify-between p-4 border rounded-lg">
@@ -157,7 +197,10 @@ export default function EmployeeView() {
                       <p className="text-sm text-gray-500">Not certified</p>
                     </div>
                   </div>
-                  <Button size="sm" className="bg-indigo-600 hover:bg-indigo-700">
+                  <Button
+                    size="sm"
+                    className="bg-indigo-600 hover:bg-indigo-700"
+                  >
                     Get Certified
                   </Button>
                 </div>
@@ -178,7 +221,9 @@ export default function EmployeeView() {
                 <div className="w-2 h-10 bg-pink-500 rounded-full mr-3"></div>
                 <div>
                   <h3 className="font-medium">Cohort Drive - 2nd July</h3>
-                  <p className="text-sm text-gray-500">1 PM - 4 PM • Thursday</p>
+                  <p className="text-sm text-gray-500">
+                    1 PM - 4 PM • Thursday
+                  </p>
                 </div>
               </div>
               <Badge className="bg-green-100 text-green-700">Confirmed</Badge>
@@ -189,7 +234,9 @@ export default function EmployeeView() {
                 <div className="w-2 h-10 bg-teal-500 rounded-full mr-3"></div>
                 <div>
                   <h3 className="font-medium">BAU Drive - 10th July</h3>
-                  <p className="text-sm text-gray-500">2 PM - 3 PM • Wednesday</p>
+                  <p className="text-sm text-gray-500">
+                    2 PM - 3 PM • Wednesday
+                  </p>
                 </div>
               </div>
               <Badge className="bg-green-100 text-green-700">Confirmed</Badge>
@@ -209,5 +256,5 @@ export default function EmployeeView() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

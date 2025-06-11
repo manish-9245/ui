@@ -1,30 +1,31 @@
-# React UI clone
+# Hiring Connect Vite App
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+A Vite-powered React application with Tailwind, React Router, and ShadCN UI components.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/manish9245s-projects/v0-react-ui-clone)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/PdKGoyUPhTr)
+## Setup & Running
 
-## Overview
+1. Install dependencies:
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+   ```bash
+   npm install
+   ```
 
-## Deployment
+2. Start development server:
 
-Your project is live at:
+   ```bash
+   npm run dev
+   ```
 
-**[https://vercel.com/manish9245s-projects/v0-react-ui-clone](https://vercel.com/manish9245s-projects/v0-react-ui-clone)**
+   The app will be available at http://localhost:5173
 
-## Build your app
+3. Build for production:
 
-Continue building your app on:
+   ```bash
+   npm run build
+   ```
 
-**[https://v0.dev/chat/projects/PdKGoyUPhTr](https://v0.dev/chat/projects/PdKGoyUPhTr)**
+4. Preview production build:
 
-## How It Works
-
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+   ```bash
+   npm run preview
+   ```

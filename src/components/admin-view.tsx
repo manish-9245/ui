@@ -1,44 +1,51 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
-import { Search, Plus, MoreHorizontal, Settings, Users, FileText, BarChart } from "lucide-react"
-import { adminUsersData, systemConfigData } from "@/data/mock-data"
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import {
+  Search,
+  Plus,
+  MoreHorizontal,
+  Settings,
+  Users,
+  FileText,
+  BarChart,
+} from "lucide-react";
+import { adminUsersData, systemConfigData } from "@/data/mock-data";
 
 export default function AdminView() {
-  const [activeTab, setActiveTab] = useState("users")
-  const [searchQuery, setSearchQuery] = useState("")
-  const [apiKey, setApiKey] = useState("••••••••••••••••••••••••••••••")
-  const [webhookUrl, setWebhookUrl] = useState("https://api.hiringconnect.com/webhooks/events")
+  const [activeTab, setActiveTab] = useState("users");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [apiKey, setApiKey] = useState("••••••••••••••••••••••••••••••");
+  const [webhookUrl, setWebhookUrl] = useState(
+    "https://api.hiringconnect.com/webhooks/events"
+  );
   const [configStates, setConfigStates] = useState<Record<number, boolean>>(
-    systemConfigData.reduce(
-      (acc, config) => {
-        acc[config.id] = config.status === "Enabled"
-        return acc
-      },
-      {} as Record<number, boolean>,
-    ),
-  )
+    systemConfigData.reduce((acc, config) => {
+      acc[config.id] = config.status === "Enabled";
+      return acc;
+    }, {} as Record<number, boolean>)
+  );
 
   const filteredUsers = adminUsersData.filter(
     (user) =>
       user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.id.toLowerCase().includes(searchQuery.toLowerCase()),
-  )
+      user.id.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handleConfigToggle = (configId: number, checked: boolean) => {
     setConfigStates((prev) => ({
       ...prev,
       [configId]: checked,
-    }))
-  }
+    }));
+  };
 
   return (
     <div className="p-6 space-y-6">
@@ -143,41 +150,57 @@ export default function AdminView() {
                       <th className="text-left py-3 px-4 font-medium">Name</th>
                       <th className="text-left py-3 px-4 font-medium">Email</th>
                       <th className="text-left py-3 px-4 font-medium">Role</th>
-                      <th className="text-left py-3 px-4 font-medium">Department</th>
-                      <th className="text-left py-3 px-4 font-medium">Last Active</th>
-                      <th className="text-left py-3 px-4 font-medium">Status</th>
-                      <th className="text-left py-3 px-4 font-medium">Actions</th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Department
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Last Active
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Status
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Actions
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredUsers.map((user) => (
-                      <tr key={user.id} className="border-b">
-                        <td className="py-3 px-4 text-sm font-mono">{user.id}</td>
+                      <tr key={user.id} className="border-b border-border">
+                        <td className="py-3 px-4 text-sm font-mono">
+                          {user.id}
+                        </td>
                         <td className="py-3 px-4 font-medium">{user.name}</td>
-                        <td className="py-3 px-4 text-sm text-muted-foreground">{user.email}</td>
+                        <td className="py-3 px-4 text-sm text-muted-foreground">
+                          {user.email}
+                        </td>
                         <td className="py-3 px-4">
                           <Badge
                             variant="outline"
                             className={
                               user.role === "Super Admin"
-                                ? "bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/20 dark:text-purple-400"
+                                ? "bg-purple-50 text-purple-700 border-purple-200" // uses token defaults
                                 : user.role === "Admin"
-                                  ? "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-400"
-                                  : "bg-gray-50 text-gray-700 border-gray-200 dark:bg-gray-900/20 dark:text-gray-400"
+                                ? "bg-blue-50 text-blue-700 border-blue-200"
+                                : "bg-card text-card-foreground border-border"
                             }
                           >
                             {user.role}
                           </Badge>
                         </td>
                         <td className="py-3 px-4 text-sm">{user.department}</td>
-                        <td className="py-3 px-4 text-sm text-muted-foreground">{user.lastActive}</td>
+                        <td className="py-3 px-4 text-sm text-muted-foreground">
+                          {user.lastActive}
+                        </td>
                         <td className="py-3 px-4">
                           <Badge
-                            variant={user.status === "Active" ? "default" : "secondary"}
+                            variant={
+                              user.status === "Active" ? "default" : "secondary"
+                            }
                             className={
                               user.status === "Active"
-                                ? "bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400"
-                                : "bg-gray-100 text-gray-700 dark:bg-gray-900/20 dark:text-gray-400"
+                                ? "bg-green-100 text-green-700"
+                                : "bg-muted text-muted-foreground"
                             }
                           >
                             {user.status}
@@ -205,7 +228,10 @@ export default function AdminView() {
             <CardContent>
               <div className="space-y-6">
                 {systemConfigData.map((config) => (
-                  <div key={config.id} className="flex items-center justify-between p-4 border rounded-lg">
+                  <div
+                    key={config.id}
+                    className="flex items-center justify-between p-4 border rounded-lg"
+                  >
                     <div className="flex-1">
                       <h3 className="font-medium">{config.name}</h3>
                       <p className="text-sm text-muted-foreground">
@@ -214,18 +240,22 @@ export default function AdminView() {
                     </div>
                     <div className="flex items-center space-x-3">
                       <Badge
-                        variant={configStates[config.id] ? "default" : "secondary"}
+                        variant={
+                          configStates[config.id] ? "default" : "secondary"
+                        }
                         className={
                           configStates[config.id]
-                            ? "bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400"
-                            : "bg-gray-100 text-gray-700 dark:bg-gray-900/20 dark:text-gray-400"
+                            ? "bg-green-100 text-green-700"
+                            : "bg-muted text-muted-foreground"
                         }
                       >
                         {configStates[config.id] ? "Enabled" : "Disabled"}
                       </Badge>
                       <Switch
                         checked={configStates[config.id]}
-                        onCheckedChange={(checked) => handleConfigToggle(config.id, checked)}
+                        onCheckedChange={(checked) =>
+                          handleConfigToggle(config.id, checked)
+                        }
                       />
                     </div>
                   </div>
@@ -276,5 +306,5 @@ export default function AdminView() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

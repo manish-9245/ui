@@ -1,26 +1,49 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Plus, Filter, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import EventCard from "@/components/event-card"
-import CreateEventModal from "@/components/create-event-modal"
-import { mockEvents } from "@/data/mock-data"
+import { useState } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  ChevronDown,
+  Plus,
+  Filter,
+  X,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import EventCard from "@/components/event-card";
+import CreateEventModal from "@/components/create-event-modal";
+import { mockEvents } from "@/data/mock-data";
+import { cn } from "@/lib/utils";
 
 export default function HiringEventsView() {
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
-  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
-  const [viewMode, setViewMode] = useState("Month")
-  const [currentMonth, setCurrentMonth] = useState("This Month")
-  const [expandedMonths, setExpandedMonths] = useState<Record<string, boolean>>({
-    JULY: true,
-    AUG: true,
-    SEP: false,
-  })
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [viewMode, setViewMode] = useState("Month");
+  const [currentMonth, setCurrentMonth] = useState("This Month");
+  const [expandedMonths, setExpandedMonths] = useState<Record<string, boolean>>(
+    {
+      JULY: true,
+      AUG: true,
+      SEP: false,
+    }
+  );
 
   // Filter states
   const [filters, setFilters] = useState({
@@ -28,20 +51,20 @@ export default function HiringEventsView() {
     eventType: "All Types",
     status: "All Status",
     dateRange: "",
-  })
-  const [appliedFilters, setAppliedFilters] = useState(filters)
+  });
+  const [appliedFilters, setAppliedFilters] = useState(filters);
 
   const toggleMonth = (month: string) => {
     setExpandedMonths((prev) => ({
       ...prev,
       [month]: !prev[month],
-    }))
-  }
+    }));
+  };
 
   const applyFilters = () => {
-    setAppliedFilters(filters)
-    setIsFilterModalOpen(false)
-  }
+    setAppliedFilters(filters);
+    setIsFilterModalOpen(false);
+  };
 
   const clearFilters = () => {
     const emptyFilters = {
@@ -49,49 +72,63 @@ export default function HiringEventsView() {
       eventType: "All Types",
       status: "All Status",
       dateRange: "",
-    }
-    setFilters(emptyFilters)
-    setAppliedFilters(emptyFilters)
-  }
+    };
+    setFilters(emptyFilters);
+    setAppliedFilters(emptyFilters);
+  };
 
   const filterEvents = (events: typeof mockEvents) => {
     return events.filter((event) => {
       if (
         appliedFilters.technology !== "All Technologies" &&
-        !event.technology.toLowerCase().includes(appliedFilters.technology.toLowerCase())
+        !event.technology
+          .toLowerCase()
+          .includes(appliedFilters.technology.toLowerCase())
       ) {
-        return false
+        return false;
       }
       if (
         appliedFilters.eventType !== "All Types" &&
-        !event.title.toLowerCase().includes(appliedFilters.eventType.toLowerCase())
+        !event.title
+          .toLowerCase()
+          .includes(appliedFilters.eventType.toLowerCase())
       ) {
-        return false
+        return false;
       }
-      if (appliedFilters.status !== "All Status" && event.status !== appliedFilters.status) {
-        return false
+      if (
+        appliedFilters.status !== "All Status" &&
+        event.status !== appliedFilters.status
+      ) {
+        return false;
       }
-      return true
-    })
-  }
+      return true;
+    });
+  };
 
   const groupedEvents = {
-    JULY: filterEvents(mockEvents.filter((event) => event.title.includes("July"))),
-    AUG: filterEvents(mockEvents.filter((event) => event.title.includes("August"))),
+    JULY: filterEvents(
+      mockEvents.filter((event) => event.title.includes("July"))
+    ),
+    AUG: filterEvents(
+      mockEvents.filter((event) => event.title.includes("August"))
+    ),
     SEP: [],
-  }
+  };
 
   const hasActiveFilters = Object.values(appliedFilters).some(
-    (value) => value !== "All Technologies" && value !== "All Types" && value !== "All Status",
-  )
-  const totalFilteredEvents = Object.values(groupedEvents).flat().length
+    (value) =>
+      value !== "All Technologies" &&
+      value !== "All Types" &&
+      value !== "All Status"
+  );
+  const totalFilteredEvents = Object.values(groupedEvents).flat().length;
 
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
-            <h2 className="text-2xl font-semibold">2025</h2>
+            <h2 className="text-2xl font-semibold text-foreground">2025</h2>
             <Button variant="ghost" size="icon">
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -118,7 +155,10 @@ export default function HiringEventsView() {
               variant={viewMode === "Week" ? "default" : "ghost"}
               size="sm"
               onClick={() => setViewMode("Week")}
-              className={viewMode === "Week" ? "bg-background shadow-sm" : ""}
+              className={cn(
+                "text-foreground",
+                viewMode === "Week" ? "bg-background shadow-sm" : ""
+              )}
             >
               Week
             </Button>
@@ -126,7 +166,10 @@ export default function HiringEventsView() {
               variant={viewMode === "Month" ? "default" : "ghost"}
               size="sm"
               onClick={() => setViewMode("Month")}
-              className={viewMode === "Month" ? "bg-background shadow-sm" : ""}
+              className={cn(
+                "text-foreground",
+                viewMode === "Month" ? "bg-background shadow-sm" : ""
+              )}
             >
               Month
             </Button>
@@ -141,7 +184,10 @@ export default function HiringEventsView() {
                   <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 bg-blue-500 text-white text-xs">
                     {
                       Object.values(appliedFilters).filter(
-                        (v) => v !== "All Technologies" && v !== "All Types" && v !== "All Status",
+                        (v) =>
+                          v !== "All Technologies" &&
+                          v !== "All Types" &&
+                          v !== "All Status"
                       ).length
                     }
                   </Badge>
@@ -157,13 +203,17 @@ export default function HiringEventsView() {
                   <Label htmlFor="technology">Technology</Label>
                   <Select
                     value={filters.technology}
-                    onValueChange={(value) => setFilters((prev) => ({ ...prev, technology: value }))}
+                    onValueChange={(value) =>
+                      setFilters((prev) => ({ ...prev, technology: value }))
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select technology" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="All Technologies">All Technologies</SelectItem>
+                      <SelectItem value="All Technologies">
+                        All Technologies
+                      </SelectItem>
                       <SelectItem value="Java">Java</SelectItem>
                       <SelectItem value="Python">Python</SelectItem>
                       <SelectItem value="React">React</SelectItem>
@@ -176,7 +226,9 @@ export default function HiringEventsView() {
                   <Label htmlFor="eventType">Event Type</Label>
                   <Select
                     value={filters.eventType}
-                    onValueChange={(value) => setFilters((prev) => ({ ...prev, eventType: value }))}
+                    onValueChange={(value) =>
+                      setFilters((prev) => ({ ...prev, eventType: value }))
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select event type" />
@@ -194,7 +246,9 @@ export default function HiringEventsView() {
                   <Label htmlFor="status">Status</Label>
                   <Select
                     value={filters.status}
-                    onValueChange={(value) => setFilters((prev) => ({ ...prev, status: value }))}
+                    onValueChange={(value) =>
+                      setFilters((prev) => ({ ...prev, status: value }))
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select status" />
@@ -209,7 +263,11 @@ export default function HiringEventsView() {
                 </div>
 
                 <div className="flex space-x-2 pt-4">
-                  <Button onClick={clearFilters} variant="outline" className="flex-1">
+                  <Button
+                    onClick={clearFilters}
+                    variant="outline"
+                    className="flex-1"
+                  >
                     Clear
                   </Button>
                   <Button onClick={applyFilters} className="flex-1">
@@ -248,19 +306,30 @@ export default function HiringEventsView() {
         {Object.entries(groupedEvents).map(([month, events]) => (
           <div key={month} className="space-y-4">
             <div className="flex items-center space-x-3">
-              <h3 className="text-lg font-semibold">{month}</h3>
+              <h3 className="text-lg font-semibold text-foreground">{month}</h3>
               <Badge variant="secondary">
                 {events.length} Event{events.length !== 1 ? "s" : ""}
               </Badge>
-              <Button variant="ghost" size="icon" onClick={() => toggleMonth(month)} className="ml-auto">
-                {expandedMonths[month] ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => toggleMonth(month)}
+                className="ml-auto"
+              >
+                {expandedMonths[month] ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
               </Button>
             </div>
 
             {expandedMonths[month] && (
               <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                 {events.length > 0 ? (
-                  events.map((event) => <EventCard key={event.id} event={event} />)
+                  events.map((event) => (
+                    <EventCard key={event.id} event={event} />
+                  ))
                 ) : (
                   <div className="col-span-full text-center py-8 text-muted-foreground">
                     No events match the current filters
@@ -272,7 +341,10 @@ export default function HiringEventsView() {
         ))}
       </div>
 
-      <CreateEventModal isOpen={isCreateModalOpen} onClose={() => setIsCreateModalOpen(false)} />
+      <CreateEventModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+      />
     </div>
-  )
+  );
 }
