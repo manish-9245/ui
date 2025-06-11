@@ -1,41 +1,42 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { RefreshCw, CheckCircle, AlertTriangle, Clock } from "lucide-react"
-import { dataRefreshLogs, dataSources } from "@/data/mock-data"
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { RefreshCw, CheckCircle, AlertTriangle, Clock } from "lucide-react";
+import { dataRefreshLogs, dataSources } from "@/data/mock-data";
 
 export default function DataRefreshView() {
-  const [activeTab, setActiveTab] = useState("status")
-  const [isRefreshing, setIsRefreshing] = useState(false)
-  const [progress, setProgress] = useState(0)
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleRefresh = () => {
-    setIsRefreshing(true)
-    setProgress(0)
+    setIsRefreshing(true);
+    setProgress(0);
 
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          clearInterval(interval)
-          setIsRefreshing(false)
-          return 100
+          clearInterval(interval);
+          setIsRefreshing(false);
+          return 100;
         }
-        return prev + 10
-      })
-    }, 500)
-  }
+        return prev + 10;
+      });
+    }, 500);
+  };
 
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold">Data Refresh</h2>
         <Button onClick={handleRefresh} disabled={isRefreshing}>
-          <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshing ? "animate-spin" : ""}`} />
+          <RefreshCw
+            className={`h-4 w-4 mr-2 ${isRefreshing ? "animate-spin" : ""}`}
+          />
           {isRefreshing ? "Refreshing..." : "Refresh Now"}
         </Button>
       </div>
@@ -112,7 +113,7 @@ export default function DataRefreshView() {
         </Card>
       </div>
 
-      <Tabs defaultValue="status" className="w-full" onValueChange={setActiveTab}>
+      <Tabs defaultValue="status" className="w-full">
         <TabsList className="grid w-full grid-cols-2 mb-6">
           <TabsTrigger value="status">Data Sources</TabsTrigger>
           <TabsTrigger value="logs">Refresh Logs</TabsTrigger>
@@ -125,11 +126,21 @@ export default function DataRefreshView() {
                 <table className="w-full">
                   <thead>
                     <tr className="border-b">
-                      <th className="text-left py-3 px-4 font-medium">Source Name</th>
-                      <th className="text-left py-3 px-4 font-medium">Status</th>
-                      <th className="text-left py-3 px-4 font-medium">Last Sync</th>
-                      <th className="text-left py-3 px-4 font-medium">Data Points</th>
-                      <th className="text-left py-3 px-4 font-medium">Actions</th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Source Name
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Status
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Last Sync
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Data Points
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Actions
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -139,14 +150,18 @@ export default function DataRefreshView() {
                         <td className="py-3 px-4">
                           <Badge
                             className={
-                              source.status === "Connected" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+                              source.status === "Connected"
+                                ? "bg-green-100 text-green-700"
+                                : "bg-red-100 text-red-700"
                             }
                           >
                             {source.status}
                           </Badge>
                         </td>
                         <td className="py-3 px-4 text-sm">{source.lastSync}</td>
-                        <td className="py-3 px-4 text-sm">{source.dataPoints}</td>
+                        <td className="py-3 px-4 text-sm">
+                          {source.dataPoints}
+                        </td>
                         <td className="py-3 px-4">
                           <Button variant="outline" size="sm">
                             <RefreshCw className="h-3 w-3 mr-2" />
@@ -169,11 +184,21 @@ export default function DataRefreshView() {
                 <table className="w-full">
                   <thead>
                     <tr className="border-b">
-                      <th className="text-left py-3 px-4 font-medium">Timestamp</th>
-                      <th className="text-left py-3 px-4 font-medium">Status</th>
-                      <th className="text-left py-3 px-4 font-medium">Duration</th>
-                      <th className="text-left py-3 px-4 font-medium">Data Points</th>
-                      <th className="text-left py-3 px-4 font-medium">Initiated By</th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Timestamp
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Status
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Duration
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Data Points
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium">
+                        Initiated By
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -183,7 +208,9 @@ export default function DataRefreshView() {
                         <td className="py-3 px-4">
                           <Badge
                             className={
-                              log.status === "Success" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+                              log.status === "Success"
+                                ? "bg-green-100 text-green-700"
+                                : "bg-red-100 text-red-700"
                             }
                           >
                             {log.status}
@@ -202,5 +229,5 @@ export default function DataRefreshView() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

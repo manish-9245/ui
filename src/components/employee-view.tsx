@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,8 +8,6 @@ import { Calendar, Clock, Users, CheckCircle, AlertCircle } from "lucide-react";
 import { employeeAssignments, feedbackData } from "@/data/mock-data";
 
 export default function EmployeeView() {
-  const [activeTab, setActiveTab] = useState("upcoming");
-
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between mb-4">
@@ -25,11 +22,7 @@ export default function EmployeeView() {
         </Badge>
       </div>
 
-      <Tabs
-        defaultValue="upcoming"
-        className="w-full"
-        onValueChange={setActiveTab}
-      >
+      <Tabs defaultValue="upcoming" className="w-full">
         <TabsList className="grid w-full grid-cols-3 mb-6">
           <TabsTrigger value="upcoming">Upcoming Interviews</TabsTrigger>
           <TabsTrigger value="feedback">Pending Feedback</TabsTrigger>

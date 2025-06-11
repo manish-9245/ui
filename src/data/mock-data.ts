@@ -12,6 +12,7 @@ export const mockEvents = [
     technology: "Java",
     tags: ["AWM"],
     color: "pink",
+    status: "All Status",
   },
   {
     id: 2,
@@ -23,6 +24,7 @@ export const mockEvents = [
     technology: "Python",
     tags: ["Shoaib", "Chetan"],
     color: "teal",
+    status: "All Status",
   },
   {
     id: 3,
@@ -34,6 +36,7 @@ export const mockEvents = [
     technology: "UX, React",
     tags: ["Aniket", "Karthik", "Naveen"],
     color: "teal",
+    status: "All Status",
   },
   {
     id: 4,
@@ -45,6 +48,7 @@ export const mockEvents = [
     technology: "Java",
     tags: ["AWM"],
     color: "pink",
+    status: "All Status",
   },
   {
     id: 5,
@@ -56,6 +60,7 @@ export const mockEvents = [
     technology: "Python",
     tags: ["Shoaib", "Chetan"],
     color: "teal",
+    status: "All Status",
   },
 ]
 
