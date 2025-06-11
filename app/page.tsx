@@ -5,6 +5,9 @@ import Sidebar from "@/components/sidebar"
 import HiringEventsView from "@/components/hiring-events-view"
 import WorkflowsView from "@/components/workflows-view"
 import CertificationView from "@/components/certification-view"
+import EmployeeView from "@/components/employee-view"
+import AdminView from "@/components/admin-view"
+import DataRefreshView from "@/components/data-refresh-view"
 import Header from "@/components/header"
 
 export default function Home() {
@@ -17,9 +20,11 @@ export default function Home() {
       case "hr":
         return <HiringEventsView />
       case "employee":
-        return <HiringEventsView />
+        return <EmployeeView />
       case "admin":
-        return <HiringEventsView />
+        return <AdminView />
+      case "data-refresh":
+        return <DataRefreshView />
       case "workflows":
         return <WorkflowsView />
       default:
@@ -31,7 +36,7 @@ export default function Home() {
     <div className="flex h-screen bg-gray-50">
       <Sidebar currentView={currentView} onViewChange={setCurrentView} />
       <div className="flex-1 flex flex-col">
-        <Header />
+        <Header currentView={currentView} />
         <main className="flex-1 overflow-auto">{renderCurrentView()}</main>
       </div>
     </div>

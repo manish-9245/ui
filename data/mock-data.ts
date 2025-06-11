@@ -1,0 +1,380 @@
+// Mock data for the application
+
+// Events data
+export const mockEvents = [
+  {
+    id: 1,
+    title: "Cohort Drive - 2nd July",
+    time: "1 PM - 4 PM",
+    duration: "180 Mins",
+    day: "Thursday",
+    panelists: 24,
+    technology: "Java",
+    tags: ["AWM"],
+    color: "pink",
+  },
+  {
+    id: 2,
+    title: "BAU Drive - 10th July",
+    time: "2 PM - 3 PM",
+    duration: "60 Mins",
+    day: "Wednesday",
+    panelists: 10,
+    technology: "Python",
+    tags: ["Shoaib", "Chetan"],
+    color: "teal",
+  },
+  {
+    id: 3,
+    title: "VP Drive - 15th July",
+    time: "2 PM - 3 PM",
+    duration: "60 Mins",
+    day: "Monday",
+    panelists: 20,
+    technology: "UX, React",
+    tags: ["Aniket", "Karthik", "Naveen"],
+    color: "teal",
+  },
+  {
+    id: 4,
+    title: "Cohort Drive - 2nd August",
+    time: "1 PM - 4 PM",
+    duration: "180 Mins",
+    day: "Thursday",
+    panelists: 24,
+    technology: "Java",
+    tags: ["AWM"],
+    color: "pink",
+  },
+  {
+    id: 5,
+    title: "VP Drive - 10th August",
+    time: "2 PM - 3 PM",
+    duration: "60 Mins",
+    day: "Wednesday",
+    panelists: 10,
+    technology: "Python",
+    tags: ["Shoaib", "Chetan"],
+    color: "teal",
+  },
+]
+
+// Certification data
+export const certificationData = [
+  {
+    type: "Behavioral",
+    target: "100%",
+    feb: "55%",
+    mar: "60%",
+    apr: "65%",
+    aprColor: "text-blue-600",
+  },
+  {
+    type: "Design",
+    target: "60%",
+    feb: "25%",
+    mar: "30%",
+    apr: "45%",
+    aprColor: "text-blue-600",
+  },
+  {
+    type: "Coding",
+    target: "60%",
+    feb: "20%",
+    mar: "30%",
+    apr: "55%",
+    aprColor: "text-blue-600",
+  },
+]
+
+// Team data with updated names and IDs
+export const teamData = [
+  {
+    sid: "EMP78921",
+    name: "Priya Sharma",
+    avatar: "/placeholder.svg?height=32&width=32",
+    behavioral: "Yes",
+    design: "Yes",
+    coding: "No",
+    totalParticipation: 6,
+    apr25: "0",
+    may15: { status: "absent", hasPlus: true },
+    jun23: { status: "absent", hasUser: true },
+  },
+  {
+    sid: "EMP45632",
+    name: "Rahul Patel",
+    avatar: "/placeholder.svg?height=32&width=32",
+    behavioral: "No",
+    design: "Yes",
+    coding: "No",
+    totalParticipation: 4,
+    apr25: "0",
+    may15: { status: "absent", hasUser: true },
+    jun23: { status: "absent", hasUser: true },
+  },
+  {
+    sid: "EMP12098",
+    name: "Aisha Khan",
+    avatar: "/placeholder.svg?height=32&width=32",
+    behavioral: "No",
+    design: "Yes",
+    coding: "Yes",
+    totalParticipation: 0,
+    apr25: "0",
+    may15: { status: "absent", hasPlus: true },
+    jun23: { status: "absent", hasPlus: true },
+  },
+  {
+    sid: "EMP67543",
+    name: "Vikram Singh",
+    avatar: "/placeholder.svg?height=32&width=32",
+    behavioral: "Yes",
+    design: "No",
+    coding: "Yes",
+    totalParticipation: 8,
+    apr25: "2",
+    may15: { status: "present", hasPlus: true },
+    jun23: { status: "present", hasUser: true },
+  },
+  {
+    sid: "EMP34521",
+    name: "Neha Gupta",
+    avatar: "/placeholder.svg?height=32&width=32",
+    behavioral: "Yes",
+    design: "Yes",
+    coding: "Yes",
+    totalParticipation: 12,
+    apr25: "3",
+    may15: { status: "present", hasUser: false },
+    jun23: { status: "absent", hasUser: true },
+  },
+]
+
+// Employee assignments data
+export const employeeAssignments = [
+  {
+    id: 1,
+    eventTitle: "Cohort Drive - 2nd July",
+    role: "Interviewer",
+    time: "1 PM - 2 PM",
+    candidates: 3,
+    status: "Confirmed",
+  },
+  {
+    id: 2,
+    eventTitle: "VP Drive - 15th July",
+    role: "Observer",
+    time: "2 PM - 3 PM",
+    candidates: 2,
+    status: "Pending",
+  },
+  {
+    id: 3,
+    eventTitle: "BAU Drive - 10th July",
+    role: "Interviewer",
+    time: "2 PM - 3 PM",
+    candidates: 2,
+    status: "Confirmed",
+  },
+  {
+    id: 4,
+    eventTitle: "Cohort Drive - 2nd August",
+    role: "Interviewer",
+    time: "3 PM - 4 PM",
+    candidates: 3,
+    status: "Confirmed",
+  },
+]
+
+// Feedback data
+export const feedbackData = [
+  {
+    id: 1,
+    candidateName: "Arjun Mehta",
+    candidateId: "CAN45678",
+    event: "Cohort Drive - 2nd July",
+    status: "Pending",
+    deadline: "3rd July",
+  },
+  {
+    id: 2,
+    candidateName: "Zara Malik",
+    candidateId: "CAN34521",
+    event: "VP Drive - 15th June",
+    status: "Completed",
+    deadline: "16th June",
+  },
+  {
+    id: 3,
+    candidateName: "Rohan Kapoor",
+    candidateId: "CAN78932",
+    event: "BAU Drive - 10th June",
+    status: "Completed",
+    deadline: "11th June",
+  },
+]
+
+// Admin users data
+export const adminUsersData = [
+  {
+    id: "ADM12345",
+    name: "Ananya Desai",
+    email: "ananya.desai@company.com",
+    role: "Super Admin",
+    department: "HR",
+    lastActive: "Today, 10:30 AM",
+    status: "Active",
+  },
+  {
+    id: "ADM23456",
+    name: "Rajiv Malhotra",
+    email: "rajiv.malhotra@company.com",
+    role: "Admin",
+    department: "Engineering",
+    lastActive: "Yesterday, 4:15 PM",
+    status: "Active",
+  },
+  {
+    id: "ADM34567",
+    name: "Meera Iyer",
+    email: "meera.iyer@company.com",
+    role: "Moderator",
+    department: "Product",
+    lastActive: "Jul 10, 2:45 PM",
+    status: "Inactive",
+  },
+  {
+    id: "ADM45678",
+    name: "Sanjay Kumar",
+    email: "sanjay.kumar@company.com",
+    role: "Admin",
+    department: "Design",
+    lastActive: "Today, 9:20 AM",
+    status: "Active",
+  },
+  {
+    id: "ADM56789",
+    name: "Divya Reddy",
+    email: "divya.reddy@company.com",
+    role: "Moderator",
+    department: "Marketing",
+    lastActive: "Jul 12, 11:05 AM",
+    status: "Active",
+  },
+]
+
+// System configuration data
+export const systemConfigData = [
+  {
+    id: 1,
+    name: "Email Notifications",
+    status: "Enabled",
+    lastUpdated: "Jul 10, 2025",
+    updatedBy: "Ananya Desai",
+  },
+  {
+    id: 2,
+    name: "Calendar Integration",
+    status: "Enabled",
+    lastUpdated: "Jun 28, 2025",
+    updatedBy: "Rajiv Malhotra",
+  },
+  {
+    id: 3,
+    name: "Automated Reminders",
+    status: "Disabled",
+    lastUpdated: "Jul 5, 2025",
+    updatedBy: "Meera Iyer",
+  },
+  {
+    id: 4,
+    name: "Feedback Templates",
+    status: "Enabled",
+    lastUpdated: "Jul 12, 2025",
+    updatedBy: "Ananya Desai",
+  },
+  {
+    id: 5,
+    name: "API Integration",
+    status: "Enabled",
+    lastUpdated: "Jun 30, 2025",
+    updatedBy: "Sanjay Kumar",
+  },
+]
+
+// Data refresh logs
+export const dataRefreshLogs = [
+  {
+    id: 1,
+    timestamp: "Jul 15, 2025 - 09:30 AM",
+    status: "Success",
+    duration: "45 seconds",
+    dataPoints: "1,245",
+    initiatedBy: "System",
+  },
+  {
+    id: 2,
+    timestamp: "Jul 14, 2025 - 09:30 AM",
+    status: "Success",
+    duration: "42 seconds",
+    dataPoints: "1,198",
+    initiatedBy: "System",
+  },
+  {
+    id: 3,
+    timestamp: "Jul 13, 2025 - 09:30 AM",
+    status: "Failed",
+    duration: "12 seconds",
+    dataPoints: "0",
+    initiatedBy: "System",
+  },
+  {
+    id: 4,
+    timestamp: "Jul 13, 2025 - 10:15 AM",
+    status: "Success",
+    duration: "50 seconds",
+    dataPoints: "1,245",
+    initiatedBy: "Ananya Desai",
+  },
+  {
+    id: 5,
+    timestamp: "Jul 12, 2025 - 09:30 AM",
+    status: "Success",
+    duration: "43 seconds",
+    dataPoints: "1,187",
+    initiatedBy: "System",
+  },
+]
+
+// Data sources
+export const dataSources = [
+  {
+    id: 1,
+    name: "HR Management System",
+    status: "Connected",
+    lastSync: "Jul 15, 2025 - 09:30 AM",
+    dataPoints: "845",
+  },
+  {
+    id: 2,
+    name: "Applicant Tracking System",
+    status: "Connected",
+    lastSync: "Jul 15, 2025 - 09:30 AM",
+    dataPoints: "320",
+  },
+  {
+    id: 3,
+    name: "Calendar System",
+    status: "Connected",
+    lastSync: "Jul 15, 2025 - 09:30 AM",
+    dataPoints: "80",
+  },
+  {
+    id: 4,
+    name: "Feedback Database",
+    status: "Error",
+    lastSync: "Jul 13, 2025 - 09:30 AM",
+    dataPoints: "0",
+  },
+]

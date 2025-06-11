@@ -1,93 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { X, Plus, Search, Bell, MessageSquare } from "lucide-react"
-import { Button } from "@/components/ui/button"
-
-const certificationData = [
-  {
-    type: "Behavioral",
-    target: "100%",
-    feb: "55%",
-    mar: "60%",
-    apr: "65%",
-    aprColor: "text-blue-600",
-  },
-  {
-    type: "Design",
-    target: "60%",
-    feb: "25%",
-    mar: "30%",
-    apr: "45%",
-    aprColor: "text-blue-600",
-  },
-  {
-    type: "Coding",
-    target: "60%",
-    feb: "20%",
-    mar: "30%",
-    apr: "55%",
-    aprColor: "text-blue-600",
-  },
-]
-
-const teamData = [
-  {
-    sid: "D234543",
-    name: "Sunil",
-    avatar: "/placeholder.svg?height=32&width=32",
-    behavioral: "Yes",
-    design: "Yes",
-    coding: "No",
-    totalParticipation: 6,
-    apr25: "0",
-    may15: { status: "absent", hasPlus: true },
-    jun23: { status: "absent", hasUser: true },
-  },
-  {
-    sid: "F657456",
-    name: "Swathi",
-    avatar: "/placeholder.svg?height=32&width=32",
-    behavioral: "No",
-    design: "Yes",
-    coding: "No",
-    totalParticipation: 4,
-    apr25: "0",
-    may15: { status: "absent", hasUser: true },
-    jun23: { status: "absent", hasUser: true },
-  },
-  {
-    sid: "E876598",
-    name: "Ranjan",
-    avatar: "/placeholder.svg?height=32&width=32",
-    behavioral: "No",
-    design: "Yes",
-    coding: "Yes",
-    totalParticipation: 0,
-    apr25: "0",
-    may15: { status: "absent", hasPlus: true },
-    jun23: { status: "absent", hasPlus: true },
-  },
-]
+import { X, Plus } from "lucide-react"
+import { certificationData, teamData } from "@/data/mock-data"
 
 export default function CertificationView() {
   return (
     <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Hiring Events</h1>
-        <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="icon">
-            <Search className="h-5 w-5" />
-          </Button>
-          <Button variant="ghost" size="icon">
-            <Bell className="h-5 w-5" />
-          </Button>
-          <Button variant="ghost" size="icon">
-            <MessageSquare className="h-5 w-5" />
-          </Button>
-        </div>
-      </div>
-
       <Card>
         <CardHeader>
           <CardTitle>
